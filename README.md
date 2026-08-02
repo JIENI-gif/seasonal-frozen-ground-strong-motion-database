@@ -161,10 +161,10 @@ It does not replace, modify, or supersede the terms of use of the third-party so
 
 ## Citation
 
-Before publication of the associated Data Descriptor, please cite the database using the repository name, version number, and GitHub repository URL:
+Before publication of the associated Data Descriptor, please cite the database as:
 
 **Seasonal Frozen-Ground Strong-Motion Database, version 1.0. GitHub repository: https://github.com/JIENI-gif/seasonal-frozen-ground-strong-motion-database**
 
-After publication of the associated Data Descriptor, users should cite the published article and report the database version used in their study.
+Version 1.0 release: https://github.com/JIENI-gif/seasonal-frozen-ground-strong-motion-database/releases/tag/v1.0
 
-Users reusing information derived from third-party source datasets should also cite the corresponding original data providers, datasets, and services listed in this README and in the associated Data Descriptor.
+After publication of the associated Data Descriptor, users should cite the published article and report the database version used.
