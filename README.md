@@ -147,11 +147,9 @@ Users should also consider earthquake source, propagation-path, and site-conditi
 
 ## Version and release status
 
-This repository is being prepared for the public v1.0 release of the Seasonal Frozen-Ground Strong-Motion Database.
+This public repository contains the pre-release version of the Seasonal Frozen-Ground Strong-Motion Database v1.0. The database files, data dictionary, and documentation are undergoing final validation.
 
-Following final validation, the repository will be made publicly accessible on GitHub. The database files, data dictionary, documentation, and version history will be maintained through this repository.
-
-Corrections and future updates will be documented in the release notes and identified using updated version numbers.
+The formal v1.0 release will be published through GitHub Releases after final validation. Corrections and future updates will be documented in the release notes and identified using updated version numbers.
 
 ## License
 
