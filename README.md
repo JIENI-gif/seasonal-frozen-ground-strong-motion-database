@@ -27,7 +27,7 @@ Each row represents one earthquake–station strong-motion record. The first hea
 - `Seasonal_Frozen_Ground_Strong_Motion_Database.csv`  
   Record-level strong-motion flatfile in comma-separated-value format. The field order and data content are consistent with the XLSX version.
 
-- `Supplementary_Table_S1_Data_Dictionary_v1.0.xlsx`  
+- `Supplementary_Table_1_Data_Dictionary_v1.0.xlsx`  
   Data dictionary containing the definitions, units, data types, sources or calculation methods, categorical codes, and missing-value conventions for all 56 fields.
 
 - `LICENSE`  
@@ -115,7 +115,7 @@ The value `-999` is used only for fields and circumstances explicitly specified 
 
 `Unknown` is a valid categorical value for tectonic type or fault type when a reliable classification cannot be assigned. It is not treated as a general missing-value code.
 
-Users should consult `Supplementary_Table_S1_Data_Dictionary_v1.0.xlsx` before filtering, interpreting, or analysing individual fields.
+Users should consult `Supplementary_Table_1_Data_Dictionary_v1.0.xlsx` before filtering, interpreting, or analysing individual fields.
 
 ## Data sources
 
