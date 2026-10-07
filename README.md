@@ -2,169 +2,126 @@
 
 ## Overview
 
-This repository provides a record-level strong-motion flatfile with seasonal frozen-ground annotations for Japan. The database integrates earthquake source information, KiK-net station and site metadata, source-to-site distance metrics, significant-duration measures, intensity measures, and seasonal frozen-ground annotations within a unified flatfile structure.
+This repository provides a record-level strong-motion flatfile with seasonal frozen-ground annotations for Japan. Each event–station record links strong-motion measures with earthquake source information, source-to-site distance metrics, KiK-net station and site parameters, and air-temperature-based ground-freezing information.
 
-The database is intended to support reproducible analyses of strong-motion records under different ground-freezing conditions. Potential applications include data screening, statistical comparison, regression modelling, ground-motion analysis, and investigations of the associations between seasonal frozen-ground conditions and strong-motion characteristics.
+The database supports comparisons of strong-motion characteristics between records classified as frozen and non-frozen. Source and path parameters can be considered when investigating associations between seasonal ground-freezing conditions and strong-motion characteristics.
 
 ## Database scope
 
-- **Time period:** 2016-01-01 to 2025-01-01
-- **Moment-magnitude range:** 4.0 ≤ Mw ≤ 6.5
-- **Independent earthquake events:** 1,376
-- **Strong-motion records:** 34,654
-- **KiK-net stations:** 362
-- **Frozen records:** 3,791
-- **Non-frozen records:** 30,863
-- **Number of database fields:** 56
+- Time period: 2016-01-01 to 2025-01-01
+- Moment-magnitude range: 4.0 ≤ Mw ≤ 6.5
+- Independent earthquake events: 1,376
+- Strong-motion records: 34,654
+- KiK-net stations: 362
+- Frozen records: 3,791
+- Non-frozen records: 30,863
+- Number of database fields: 54
 
-Each row represents one earthquake–station strong-motion record. The first header row identifies the five field groups, and the second header row provides the exact field names.
+Each row of the CSV file represents one earthquake–station strong-motion record. The CSV file has one header row containing the field names. Field definitions, units, codes, and missing-value conventions are provided in the data dictionary.
 
 ## Files
 
-- `Seasonal_Frozen_Ground_Strong_Motion_Database.xlsx`  
-  Record-level strong-motion flatfile in Microsoft Excel format. The file retains the two-row header structure and field-group information.
-
-- `Seasonal_Frozen_Ground_Strong_Motion_Database.csv`  
-  Record-level strong-motion flatfile in comma-separated-value format. The field order and data content are consistent with the XLSX version.
-
-- `Supplementary_Table_1_Data_Dictionary_v1.0.xlsx`  
-  Data dictionary containing the definitions, units, data types, sources or calculation methods, categorical codes, and missing-value conventions for all 56 fields.
-
-- `LICENSE`  
-  License terms for the original database compilation, metadata structure, and derived annotations distributed through this repository.
+- [`Seasonal_Frozen_Ground_Strong_Motion_Database.csv`](./Seasonal_Frozen_Ground_Strong_Motion_Database.csv): Record-level strong-motion flatfile containing 34,654 records and 54 fields.
+- [`Supplementary_Table_1_Data_Dictionary_v1.0.xlsx`](./Supplementary_Table_1_Data_Dictionary_v1.0.xlsx): Data dictionary containing field definitions, units, data types, sources or calculation methods, categorical codes, and missing-value conventions.
+- [`LICENSE`](./LICENSE): License terms for the original database compilation, metadata structure, and derived annotations distributed through this repository.
 
 ## Database structure
 
-The database is organised into five field groups.
+The 54 fields are arranged in five groups:
 
 ### PART I: Basic earthquake information
 
-This part contains 10 fields describing the event identifier, origin time, epicentral coordinates, focal depth, tectonic type, fault-type classifications, JMA magnitude, and moment magnitude.
+Nine fields describe the event identifier, origin time, epicentral coordinates, focal depth, tectonic type, type of faulting determined from the P- and T-axis parameters, JMA magnitude, and moment magnitude.
 
-### PART II: Station and freeze–thaw metadata
+### PART II: Station and seasonal frozen-ground parameters
 
-This part contains 16 fields describing the KiK-net station, station location, terrain elevation, freezing index, frozen-ground coefficient, estimated freezing depth, record-level ground-freezing status, freeze–thaw transition count, distance to the matched meteorological station, Vs30, and Japanese Vs30-based site class.
+Fifteen fields describe the KiK-net station and its location, station elevation, freezing index, freezing coefficient, estimated freezing depth, record-level ground-freezing status, distance to the matched meteorological station, Vs30, and Japanese site class. Vs30 and Japanese site class are distinct fields.
 
 ### PART III: Source-to-site distance metrics
 
-This part contains three distance measures:
-
-- Epicentral distance (`Repi`)
-- Hypocentral distance (`Rhyp`)
-- Rupture distance (`Rrup`)
+Three fields provide epicentral distance (`Repi`), hypocentral distance (`Rhyp`), and rupture distance (`Rrup`).
 
 ### PART IV: Significant-duration measures
 
-This part contains D5–75 and D5–95 significant durations for the east–west, north–south, and vertical acceleration components.
+Six fields provide D5–75 and D5–95 significant durations for the east–west, north–south, and vertical acceleration components.
 
 ### PART V: Intensity measures
 
-This part contains the horizontal geometric-mean peak ground acceleration and 5%-damped pseudo-spectral acceleration values at 20 selected periods from 0.05 s to 5.00 s.
+Twenty-one fields provide horizontal peak ground acceleration and 5%-damped pseudo-spectral acceleration at 20 selected periods from 0.05 to 5.00 s.
 
 ## Seasonal frozen-ground annotations
 
-Each KiK-net station was matched to the nearest Japan Meteorological Agency meteorological station within a maximum distance of 30 km. All 362 KiK-net stations were successfully matched.
+Each KiK-net station was matched to a Japan Meteorological Agency (JMA) meteorological station within a maximum distance of 30 km. All 362 KiK-net stations were matched.
 
-The record-level ground-freezing status was determined using the mean of the daily mean air temperatures on the day before the earthquake, the earthquake day, and the following day:
+Record-level ground-freezing status was assigned using the mean of the daily mean air temperatures on the day before the earthquake, the earthquake day, and the following day:
 
-- `freeze_thaw_state = 1`: three-day mean temperature < 0 °C
-- `freeze_thaw_state = 0`: three-day mean temperature ≥ 0 °C
+- `freeze_thaw_state = 1`: three-day mean air temperature < 0 °C
+- `freeze_thaw_state = 0`: three-day mean air temperature ≥ 0 °C
 
-A complete three-day temperature window was available for 34,618 records. For the remaining 36 records, the daily mean temperature on the earthquake day was used with the same 0 °C threshold.
+A complete three-day temperature window was available for 34,618 records. For the remaining 36 records, the daily mean air temperature on the earthquake day was used with the same 0 °C threshold.
 
-The freezing index (`FI`) and freeze–thaw transition count were calculated separately for each complete year from 2016 to 2024 and then averaged across the nine years.
+For each complete calendar year from 2016 to 2024, the annual freezing index (`FI`) was calculated as the sum of the absolute values of daily mean air temperatures below 0 °C. The mean of the nine annual values was assigned to the corresponding KiK-net station.
 
-For each year, the freezing index was calculated as the accumulated absolute value of daily mean temperatures below 0 °C.
-
-For the freeze–thaw transition count, each day was classified as either below 0 °C or not below 0 °C. A change between these two temperature states on consecutive days was counted as one transition. This variable represents the annual number of temperature-state transitions and does not necessarily represent the number of complete closed freeze–thaw cycles.
-
-The frozen-ground coefficient (`Ea`) was calculated from station latitude, longitude, and terrain elevation. The estimated freezing depth (`ξ`) was calculated from `FI` and `Ea` and is stored in centimetres.
+The freezing coefficient (`Ea`) was calculated from station latitude, longitude, and elevation. Estimated freezing depth (`ξ`) was calculated from `FI` and `Ea` and is stored in centimetres. The associated Data Descriptor and data dictionary provide the calculation details.
 
 ## Strong-motion processing
 
-The database contains three-component surface acceleration records from KiK-net. All retained records have a sampling frequency of 100 Hz and acceleration values expressed in Gal.
+The database contains measures derived from three-component KiK-net surface acceleration records. All retained records have a sampling frequency of 100 Hz, and acceleration is expressed in Gal.
 
-The acceleration time series were processed using the workflow described in the associated Data Descriptor. Processing included mean removal, zero padding, and 0.1–30 Hz acausal band-pass filtering.
+Processing included mean removal, zero padding, and application of the same noncausal 0.1–30 Hz band-pass filter to all records. The processed time histories were used to calculate peak ground acceleration, 5%-damped pseudo-spectral acceleration, and D5–75 and D5–95 significant durations. Horizontal PGA and PSA are the geometric means of the corresponding east–west and north–south component values.
 
-The processed records were used to calculate:
-
-- Peak ground acceleration
-- 5%-damped pseudo-spectral acceleration
-- D5–75 significant duration
-- D5–95 significant duration
-
-Horizontal PGA and PSA values were calculated as the geometric mean of the east–west and north–south component values.
-
-The released flatfiles contain derived strong-motion measures and associated metadata. Original KiK-net waveform files are not redistributed through this repository.
+This repository distributes derived strong-motion measures and associated metadata, not the original KiK-net waveform files.
 
 ## Distance and site parameters
 
-Epicentral distance was calculated from the earthquake epicentre and station coordinates using geodesic calculations on the WGS 84 reference ellipsoid.
+Epicentral distance was calculated from the earthquake epicentre and station coordinates using geodesic calculations on the WGS 84 reference ellipsoid. Hypocentral distance was calculated from epicentral distance and focal depth.
 
-Hypocentral distance was calculated from epicentral distance and focal depth.
+Rupture distance was calculated using publicly available finite-fault models where available. The finite-fault models used in this study were obtained from the NIED Source Inversion Analysis database. For eligible events without a public finite-fault model, empirical rectangular rupture surfaces were constructed using the available earthquake and focal-mechanism parameters. Records for which rupture distance could not be calculated have the missing-value code specified in the data dictionary.
 
-Rupture distance was calculated directly from publicly available finite-fault models where such models were available. All finite-fault models used in this study were obtained from the NIED Source Inversion Analysis database.
-
-For events without a public finite-fault model, empirical rectangular rupture planes were constructed only for interface, intraslab, and shallow-crustal earthquakes with the required source-mechanism parameters. Records for which rupture distance could not be calculated are assigned `-999`, as specified in the data dictionary.
-
-Vs30 was calculated only for stations whose shear-wave velocity profiles completely covered the upper 30 m. Profiles shallower than 30 m were excluded, and no extrapolation was performed.
+Vs30 was calculated only where the shear-wave velocity profile extended to at least 30 m below the ground surface; shallower profiles were not extrapolated. The Japanese site class is recorded separately from Vs30. Consult the data dictionary for the definitions and codes of both fields.
 
 ## Missing values and categorical codes
 
-The value `-999` is used only for fields and circumstances explicitly specified in the data dictionary.
+The value `-999` is used only for fields and circumstances specified in the data dictionary. `Unknown` is a categorical value for tectonic type or type of faulting when a classification could not be assigned; it is not a general missing-value code.
 
-`Unknown` is a valid categorical value for tectonic type or fault type when a reliable classification cannot be assigned. It is not treated as a general missing-value code.
-
-Users should consult `Supplementary_Table_1_Data_Dictionary_v1.0.xlsx` before filtering, interpreting, or analysing individual fields.
+Users should consult [`Supplementary_Table_1_Data_Dictionary_v1.0.xlsx`](./Supplementary_Table_1_Data_Dictionary_v1.0.xlsx) before filtering or interpreting individual fields.
 
 ## Data sources
 
-The database was compiled using information obtained or derived from the following public data services and datasets:
+The database was compiled using information obtained or derived from:
 
 - NIED K-NET and KiK-net strong-motion records and KiK-net station information
 - JMA Unified Hypocenter Catalog provided through the NIED Hi-net data portal
-- NIED F-net moment magnitudes, moment tensors, focal-mechanism solutions, and P- and T-axis parameters
-- Japan Meteorological Agency daily mean air-temperature observations
+- NIED F-net moment magnitudes and focal-mechanism information
+- JMA daily mean air-temperature observations
 - GEBCO_2025 terrain-elevation data
 - Slab2 subduction-zone geometry data
 - NIED Source Inversion Analysis finite-fault models, where available
 
-This repository does not redistribute original waveform files, earthquake catalogues, meteorological observations, terrain grids, Slab2 files, or finite-fault model files.
-
-Users should consult and cite the corresponding original data providers, datasets, and services when reusing the database.
+This repository does not redistribute original waveform files, earthquake catalogues, meteorological observations, terrain grids, Slab2 files, or finite-fault model files. Users should consult and cite the relevant original data providers when reusing the database.
 
 ## Recommended use and limitations
 
-The record-level ground-freezing status was inferred from daily mean air temperatures recorded at the matched JMA meteorological station. It does not represent a direct observation of soil temperature or subsurface freezing conditions at the KiK-net station.
+The record-level ground-freezing status was inferred from air temperatures measured at matched JMA meteorological stations. It is not a direct measurement of soil temperature or subsurface freezing at a KiK-net station.
 
-The freezing index, freeze–thaw transition count, frozen-ground coefficient, and estimated freezing depth are station-scale environmental annotations.
+The freezing index, freezing coefficient, and estimated freezing depth are station-level environmental annotations. Estimated freezing depth is an empirical estimate rather than a measured site-specific freezing depth.
 
-The empirical relationship used to estimate freezing depth was not developed specifically for Japanese stations. The estimated freezing depth should therefore be interpreted as an empirical indicator of the station-scale seasonal freezing background rather than as a measured freezing depth or a site-specific engineering design value.
+Comparisons of frozen and non-frozen records should account for differences in earthquake source, propagation path, site conditions, and the numbers of records in each group.
 
-Users should account for the unequal numbers of frozen and non-frozen records and the non-uniform magnitude–distance coverage when conducting statistical comparisons, regression analyses, or predictive modelling.
+## Version status
 
-Users should also consider earthquake source, propagation-path, and site-condition differences when interpreting statistical differences between frozen and non-frozen records.
-
-## Version and release status
-
-This repository contains the public v1.0 release of the Seasonal Frozen-Ground Strong-Motion Database. The database files, data dictionary, documentation, and version history are maintained through this GitHub repository.
-
-Corrections and future updates will be documented in the release notes and identified using updated version numbers.
+The files on the `main` branch represent the current database revision. The existing GitHub `v1.0` release is an earlier snapshot and does not represent the current 54-field file structure. A versioned release for the current files will be prepared after final verification.
 
 ## License
 
-The original database compilation, metadata structure, and derived annotations distributed through this repository are licensed under the **Creative Commons Attribution 4.0 International License (CC BY 4.0)**, subject to the terms provided in the `LICENSE` file.
+The original database compilation, metadata structure, and derived annotations distributed through this repository are licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0), subject to the terms in [`LICENSE`](./LICENSE).
 
-This license applies only to the original database compilation, metadata structure, and derived annotations distributed through this repository.
-
-It does not replace, modify, or supersede the terms of use of the third-party source datasets and services listed above.
+This license does not replace or modify the terms of use of the third-party datasets and services listed above.
 
 ## Citation
 
-Before publication of the associated Data Descriptor, please cite the database as:
+Until a versioned archival record for the current files is available, identify the data using this repository URL and the date accessed:
 
-**Seasonal Frozen-Ground Strong-Motion Database, version 1.0. GitHub repository: https://github.com/JIENI-gif/seasonal-frozen-ground-strong-motion-database**
+https://github.com/JIENI-gif/seasonal-frozen-ground-strong-motion-database
 
-Version 1.0 release: https://github.com/JIENI-gif/seasonal-frozen-ground-strong-motion-database/releases/tag/v1.0
-
-After publication of the associated Data Descriptor, users should cite the published article and report the database version used.
+The existing `v1.0` release should not be cited as the source of the current 54-field files.
