@@ -22,7 +22,7 @@ Each row of the CSV file represents one earthquake–station strong-motion recor
 ## Files
 
 - [`Seasonal_Frozen_Ground_Strong_Motion_Database.csv`](./Seasonal_Frozen_Ground_Strong_Motion_Database.csv): Record-level strong-motion flatfile containing 34,654 records and 54 fields.
-- [`Supplementary_Table_1_Data_Dictionary_v1.0.xlsx`](./Supplementary_Table_1_Data_Dictionary_v1.0.xlsx): Data dictionary containing field definitions, units, data types, sources or calculation methods, categorical codes, and missing-value conventions.
+- [`Seasonal_Frozen_Ground_Strong_Motion_Data_Dictionary_v1.0.xlsx`](./Seasonal_Frozen_Ground_Strong_Motion_Data_Dictionary_v1.0.xlsx): Data dictionary containing field definitions, units, data types, sources or calculation methods, categorical codes, and missing-value conventions.
 - [`LICENSE`](./LICENSE): License terms for the original database compilation, metadata structure, and derived annotations distributed through this repository.
 
 ## Database structure
@@ -84,7 +84,7 @@ Vs30 was calculated only where the shear-wave velocity profile extended to at le
 
 The value `-999` is used only for fields and circumstances specified in the data dictionary. `Unknown` is a categorical value for tectonic type or type of faulting when a classification could not be assigned; it is not a general missing-value code.
 
-Users should consult [`Supplementary_Table_1_Data_Dictionary_v1.0.xlsx`](./Supplementary_Table_1_Data_Dictionary_v1.0.xlsx) before filtering or interpreting individual fields.
+Users should consult [`Seasonal_Frozen_Ground_Strong_Motion_Data_Dictionary_v1.0.xlsx`](./Seasonal_Frozen_Ground_Strong_Motion_Data_Dictionary_v1.0.xlsx) before filtering or interpreting individual fields.
 
 ## Data sources
 
@@ -110,7 +110,7 @@ Comparisons of frozen and non-frozen records should account for differences in e
 
 ## Version status
 
-The files on the `main` branch represent the current database revision. The existing GitHub `v1.0` release is an earlier snapshot and does not represent the current 54-field file structure. A versioned release for the current files will be prepared after final verification.
+Version 1.0 contains the 54-field CSV flatfile with one header row and the accompanying data dictionary.
 
 ## License
 
@@ -120,8 +120,4 @@ This license does not replace or modify the terms of use of the third-party data
 
 ## Citation
 
-Until a versioned archival record for the current files is available, identify the data using this repository URL and the date accessed:
-
-https://github.com/JIENI-gif/seasonal-frozen-ground-strong-motion-database
-
-The existing `v1.0` release should not be cited as the source of the current 54-field files.
+The version 1.0 dataset is available at [the v1.0 release](https://github.com/JIENI-gif/seasonal-frozen-ground-strong-motion-database/releases/tag/v1.0).
