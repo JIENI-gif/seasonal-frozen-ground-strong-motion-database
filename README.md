@@ -4,24 +4,24 @@
 
 This repository provides a record-level strong-motion flatfile with seasonal frozen-ground annotations for Japan. Each event–station record links strong-motion measures with earthquake source information, source-to-site distance metrics, KiK-net station and site parameters, and air-temperature-based ground-freezing information.
 
-The database supports comparisons of strong-motion characteristics between records classified as frozen and non-frozen. Source and path parameters can be considered when investigating associations between seasonal ground-freezing conditions and strong-motion characteristics.
+The database supports comparisons of strong-motion characteristics between records classified as frozen and unfrozen. Source and path parameters can be considered when investigating associations between seasonal ground-freezing conditions and strong-motion characteristics.
 
 ## Database scope
 
-- Time period: 2016-01-01 to 2025-01-01
+- Time period: 2016-01-03 to 2025-01-01
 - Moment-magnitude range: 4.0 ≤ Mw ≤ 6.5
-- Independent earthquake events: 1,376
-- Strong-motion records: 34,654
-- KiK-net stations: 362
+- Independent earthquake events: 1,302
+- Strong-motion records: 25,057
+- KiK-net stations: 178
 - Frozen records: 3,791
-- Non-frozen records: 30,863
+- Unfrozen records: 21,266
 - Number of database fields: 54
 
-Each row of the CSV file represents one earthquake–station strong-motion record. The CSV file has one header row containing the field names. Field definitions, units, codes, and missing-value conventions are provided in the data dictionary.
+Each row of the CSV file represents one earthquake–station strong-motion record. The CSV file has one header row containing the field names. The released flatfile retains stations with at least one record classified as frozen. Field definitions, units, codes, and missing-value conventions are provided in the data dictionary.
 
 ## Files
 
-- [`Seasonal_Frozen_Ground_Strong_Motion_Database.csv`](./Seasonal_Frozen_Ground_Strong_Motion_Database.csv): Record-level strong-motion flatfile containing 34,654 records and 54 fields.
+- [`Seasonal_Frozen_Ground_Strong_Motion_Database.csv`](./Seasonal_Frozen_Ground_Strong_Motion_Database.csv): Record-level strong-motion flatfile containing 25,057 records and 54 fields.
 - [`Seasonal_Frozen_Ground_Strong_Motion_Data_Dictionary_v1.0.xlsx`](./Seasonal_Frozen_Ground_Strong_Motion_Data_Dictionary_v1.0.xlsx): Data dictionary containing field definitions, units, data types, sources or calculation methods, categorical codes, and missing-value conventions.
 - [`LICENSE`](./LICENSE): License terms for the original database compilation, metadata structure, and derived annotations distributed through this repository.
 
@@ -51,14 +51,14 @@ Twenty-one fields provide horizontal peak ground acceleration and 5%-damped pseu
 
 ## Seasonal frozen-ground annotations
 
-Each KiK-net station was matched to a Japan Meteorological Agency (JMA) meteorological station within a maximum distance of 30 km. All 362 KiK-net stations were matched.
+Each KiK-net station was matched to a Japan Meteorological Agency (JMA) meteorological station within a maximum distance of 30 km. All 178 KiK-net stations in the released flatfile were matched.
 
 Record-level ground-freezing status was assigned using the mean of the daily mean air temperatures on the day before the earthquake, the earthquake day, and the following day:
 
 - `freeze_thaw_state = 1`: three-day mean air temperature < 0 °C
 - `freeze_thaw_state = 0`: three-day mean air temperature ≥ 0 °C
 
-A complete three-day temperature window was available for 34,618 records. For the remaining 36 records, the daily mean air temperature on the earthquake day was used with the same 0 °C threshold.
+A complete three-day temperature window was available for 25,051 records. For the remaining six records, the mean of the available two daily mean air temperatures was used with the same 0 °C threshold.
 
 For each complete calendar year from 2016 to 2024, the annual freezing index (`FI`) was calculated as the sum of the absolute values of daily mean air temperatures below 0 °C. The mean of the nine annual values was assigned to the corresponding KiK-net station.
 
@@ -106,11 +106,11 @@ The record-level ground-freezing status was inferred from air temperatures measu
 
 The freezing index, freezing coefficient, and estimated freezing depth are station-level environmental annotations. Estimated freezing depth is an empirical estimate rather than a measured site-specific freezing depth.
 
-Comparisons of frozen and non-frozen records should account for differences in earthquake source, propagation path, site conditions, and the numbers of records in each group.
+Comparisons of frozen and unfrozen records should account for differences in earthquake source, propagation path, site conditions, and the numbers of records in each group.
 
 ## Version status
 
-Version 1.0 contains the 54-field CSV flatfile with one header row and the accompanying data dictionary.
+Version 1.0 contains 25,057 event–station records from 1,302 earthquakes recorded at 178 KiK-net stations. The CSV flatfile has one header row and 54 fields; the accompanying data dictionary defines the fields and codes.
 
 ## License
 
