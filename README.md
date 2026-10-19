@@ -62,7 +62,7 @@ A complete three-day temperature window was available for 25,051 records. For th
 
 For each complete calendar year from 2016 to 2024, the annual freezing index (`FI`) was calculated as the sum of the absolute values of daily mean air temperatures below 0 °C. The mean of the nine annual values was assigned to the corresponding KiK-net station.
 
-The freezing coefficient (`Ea`) was calculated from station latitude, longitude, and elevation. Estimated freezing depth (`ξ`) was calculated from `FI` and `Ea` and is stored in centimetres. The associated Data Descriptor and data dictionary provide the calculation details.
+The freezing coefficient (`Ea`) was calculated from station latitude, longitude, and elevation. Estimated freezing depth (`ξ`) was calculated from `FI` and `Ea` and is stored in centimetres. The accompanying manuscript describes the empirical relationship, and the data dictionary provides the field definitions and units.
 
 ## Strong-motion processing
 
